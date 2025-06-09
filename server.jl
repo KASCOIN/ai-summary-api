@@ -85,5 +85,8 @@ function handle_request(req::HTTP.Request)
     end
 end
 
-HTTP.serve(handle_request, "0.0.0.0", 8000)
-println("Server started on port 8000") # The server is already running
+# Get port from environment variable or default to 8000
+port = parse(Int, get(ENV, "PORT", "8000"))
+
+println("Server starting on port $port")
+HTTP.serve(handle_request, "0.0.0.0", port)
