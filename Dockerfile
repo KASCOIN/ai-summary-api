@@ -15,19 +15,16 @@ WORKDIR /app
 # `.` refers to the current directory on your local machine.
 # `./` refers to the WORKDIR (`/app`) inside the container.
 COPY Project.toml Manifest.toml ./
+COPY .env ./
+COPY *.jl ./
 
 # Install Julia project dependencies. This command reads your Project.toml
 # and Manifest.toml to install all necessary packages.
 # `--project=.` ensures Julia uses the package environment defined in the current directory.
 RUN julia --project=. -e 'using Pkg; Pkg.instantiate()'
 
-# Copy your Julia application source code.
-# Ensure all necessary Julia files (server.jl, checking.jl, etc.) are copied.
-COPY server.jl ./
-COPY checking.jl ./
-# If you have other Julia source files in subdirectories (e.g., `src/`),
-# you would add more COPY commands like:
-# COPY src/ ./src/
+# Set environment variables
+ENV PORT=8000
 
 # Expose the port that your Julia server will listen on.
 # This must match the `port` variable in your `server.jl` (default is 8000).
