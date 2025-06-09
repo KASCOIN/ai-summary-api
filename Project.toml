@@ -1,13 +1,6 @@
-name = "WeatherApp"
-uuid = "e30c4db3-cc3e-4888-b5ef-7f6ce7b7124f"  # Generate a UUID: `using UUIDs; UUIDs.uuid4()`
-version = "0.1.0"
-
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
-Dates = "ade2372b-179f-54ce-899a-77ba9bbdaffb"
-HTTP = "cd3eb016-06fe-5004-914c-579558d9cbca"
-JSON = "682c06a0-de6a-54ab-a142-c1fce799969c"
-XLSX = "fbea896a-3e0e-59f6-98a5-b962c97224ca"
-
-[compat]
-julia = "1.11.5" # or your Julia version
+DotEnv = "4dc1fcf4-5e3b-5448-94ab-0c38ec0385c1"
+HTTP = "cd3eb016-35fb-5094-929b-558a96fad6f3"
+JSON = "682c06a0-de6a-54ab-a142-c8b1cf79cde6"
+XLSX = "fdbf4ff8-1666-58a4-91e7-1b58723a45e0"
