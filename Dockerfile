@@ -15,7 +15,6 @@ WORKDIR /app
 # `.` refers to the current directory on your local machine.
 # `./` refers to the WORKDIR (`/app`) inside the container.
 COPY Project.toml Manifest.toml ./
-COPY .env ./
 COPY *.jl ./
 
 # Install Julia project dependencies. This command reads your Project.toml
