@@ -1,12 +1,10 @@
-using DotEnv
-DotEnv.load()
 using HTTP, JSON, Dates
+using DotEnv
 
-if isfile(".env") # Check if the .env file exists in the current directory
-    using DotEnv # Only bring DotEnv into scope if we might actually use it
-    DotEnv.load() # Load variables from .env if it exists
+# Load .env file only in development environment
+if isfile(".env")
+    DotEnv.config()
 end
-
 
 # Assuming checking.jl contains the show_weather_summary_for_day function
 include("checking.jl")
@@ -92,7 +90,7 @@ function handle_request(req::HTTP.Request)
 end
 
 # Get port from environment variable or default to 8000
-port = parse(Int, get(ENV, "PORT", "8000"))
+const PORT = parse(Int, get(ENV, "PORT", "8000"))
 
-println("Server starting on port $port")
-HTTP.serve(handle_request, "0.0.0.0", port)
+@info "Server starting on port $PORT"
+HTTP.serve(handle_request, "0.0.0.0", PORT)

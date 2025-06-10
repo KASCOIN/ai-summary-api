@@ -5,13 +5,9 @@ using HTTP
 using JSON
 using DotEnv
 
-if isfile(".env") # Check if the .env file exists in the current directory
-    for line in eachline(".env")
-        if occursin("=", line)
-            key, val = split(line, "=", limit=2)
-            ENV[strip(key)] = strip(val)
-        end
-    end
+# Load .env file only in development environment
+if isfile(".env")
+    DotEnv.config()
 end
 
 function get_api_key()
@@ -27,7 +23,7 @@ function get_api_key()
     end
 end
 
-api_key = get_api_key()
+const API_KEY = get_api_key()
 
 function fetch_weather_from_api(city::String, country::String)
     base_url = "https://utony-weather-server.onrender.com/api/weather"
