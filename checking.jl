@@ -176,7 +176,7 @@ function show_weather_summary_for_day(city::String="Texas", country::String="USA
         if weather_data !== nothing
             hourly_dict_day = extract_hourly_weather_dict_for_day(weather_data, day_date)
             if !isempty(hourly_dict_day)
-                return ai_weather_summary_from_dict(hourly_dict_day, api_key, country, city, model)
+                return ai_weather_summary_from_dict(hourly_dict_day, API_KEY, country, city, model)  # Changed api_key to API_KEY
             end
             println("No weather data found for the specified date.")
             return nothing
