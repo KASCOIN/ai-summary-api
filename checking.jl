@@ -5,10 +5,12 @@ using HTTP
 using JSON
 using DotEnv
 
-for line in eachline(".env")
-    if occursin("=", line)
-        key, val = split(line, "=", limit=2)
-        ENV[strip(key)] = strip(val)
+if isfile(".env") # Check if the .env file exists in the current directory
+    for line in eachline(".env")
+        if occursin("=", line)
+            key, val = split(line, "=", limit=2)
+            ENV[strip(key)] = strip(val)
+        end
     end
 end
 

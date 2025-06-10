@@ -1,6 +1,12 @@
 using DotEnv
-DotEnv.config()
+DotEnv.load()
 using HTTP, JSON, Dates
+
+if isfile(".env") # Check if the .env file exists in the current directory
+    using DotEnv # Only bring DotEnv into scope if we might actually use it
+    DotEnv.load() # Load variables from .env if it exists
+end
+
 
 # Assuming checking.jl contains the show_weather_summary_for_day function
 include("checking.jl")
